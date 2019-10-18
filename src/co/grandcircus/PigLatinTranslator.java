@@ -7,6 +7,7 @@ public class PigLatinTranslator {
 	public static void main(String[] args) {
 		Scanner scnr = new Scanner(System.in);
 		String response = "";
+		String responseLetter = "";
 		
 		do {
 			
@@ -22,14 +23,12 @@ public class PigLatinTranslator {
 				System.out.println(translateText(userInput));
 			}
 			System.out.println("\nTranslate another line? (y/n)");
-			response = scnr.nextLine();
+			response = scnr.nextLine().toLowerCase();
+			responseLetter = Character.toString(response.charAt(0));
 			
 			
 			
-		} while(response.equalsIgnoreCase("y"));
-		 
-		 
-		 
+		} while(responseLetter.equalsIgnoreCase("y"));
 		 
 		 scnr.close();
 
@@ -37,9 +36,7 @@ public class PigLatinTranslator {
 	
 	public static String translateText(String input) {
 		String output = input;
-		String regExp = ".*\\p{Punct}.*"; //".*\\p{Punct}[^'].*" didn't work
-//		String regex = ".*[']+.*";
-//		boolean contains = false;
+		String regExp = ".*[\\p{Punct}&&[^']]+.*";
 		String firstLetter = String.valueOf(output.charAt(0));
 		
 		if (output.matches(".*[0-9].*")) {
