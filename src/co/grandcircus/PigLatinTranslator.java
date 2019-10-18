@@ -40,9 +40,9 @@ public class PigLatinTranslator {
 		String firstLetter = String.valueOf(output.charAt(0));
 		
 		if (output.matches(".*[0-9].*")) {
-			output = "\nInvalid input. Please avoid using numbers and special characters";
+			output = "\nInvalid input. Please avoid using numbers and special characters\n";
 		} else if (output.matches(regExp)) {
-			output = "\nInvalid input. Please avoid using numbers and special characters";
+			output = "\nInvalid input. Please avoid using numbers and special characters\n";
 		}
 		
 		else if (firstLetter.matches("[AEIOUaeiou]")) {
