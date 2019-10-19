@@ -16,17 +16,17 @@ public class PigLatinTranslator {
 			String userInput = scnr.nextLine();
 			String[] sentence = userInput.split(" ");
 			if (sentence.length >= 1) {
+				System.out.println("\n\n#################################################################");
 				for (String word : sentence) {
 					System.out.print(translateText(word) + " ");
 				}
+				System.out.println("\n#################################################################");
 			} else {
 				System.out.println(translateText(userInput));
 			}
-			System.out.println("\nTranslate another line? (y/n)");
+			System.out.println("\n\nTranslate another line? (y/n)");
 			response = scnr.nextLine().toLowerCase();
 			responseLetter = Character.toString(response.charAt(0));
-			
-			
 			
 		} while(responseLetter.equalsIgnoreCase("y"));
 		 
@@ -36,13 +36,15 @@ public class PigLatinTranslator {
 	
 	public static String translateText(String input) {
 		String output = input;
-		String regExp = ".*[\\p{Punct}&&[^']]+.*";
+		String regExp = ".*[\\p{Punct}&&[^']]+.*"; // . means matches any character, * means 0 or more, \\p{Punct} refers to within the Pattern
+		//class that includes all of the punctuation !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~, '&&' means 'and', in brackets [], ^ means not including,
+		// ' is apostrophe, + means 1 or more times
 		String firstLetter = String.valueOf(output.charAt(0));
 		
-		if (output.matches(".*[0-9].*")) {
+		if (output.matches(".*[0-9].*")) {  //. means matches any character, * means 0 or more, in the brackets [], 0-9 means any digit between 0 and 9 
 			output = "\nInvalid input. Please avoid using numbers and special characters\n";
 		} else if (output.matches(regExp)) {
-			output = "\nInvalid input. Please avoid using numbers and special characters\n";
+			output = "\nnInvalid input. Please avoid using numbers and special characters\n";
 		}
 		
 		else if (firstLetter.matches("[AEIOUaeiou]")) {
